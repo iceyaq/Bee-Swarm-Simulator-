@@ -1,30 +1,7 @@
--- Bee Swarm Simulator Auto-Collect Pollen Script 
-local function autoCollectPollen()
-    while true do
-        wait(1) -- Adjust wait time if needed
-        local success, result = pcall(function()
-            for _, bee in ipairs(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Model"):GetChildren()) do
-                if bee:IsA("Model") and bee:FindFirstChild("Humanoid") then
-                    -- Example of simple action: move to nearest flower and collect pollen
-                    local flower = game.Workspace:FindFirstChild("Flower") -- Replace with actual flower object or method to find flower
-                    if flower then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = flower.CFrame
-                    end
-                end
-            end
-        end)
-
-        if not success then
-            warn("Error occurred during pollen collection: " .. tostring(result))
-        end
-    end
-end
-
--- Execute the function with error handling
-local success, result = pcall(autoCollectPollen)
+local success, err = pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/iceyaq/Bee-Swarm-Simulator-/main/Bee%20Swarm%20Simulator"))()
+end)
 
 if not success then
-    warn("Failed to start auto-collect script: " .. tostring(result))
-else
-    print("Auto-collect script running successfully!")
+    warn("Failed to load Bee Swarm Simulator script: " .. err)
 end
